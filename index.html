@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GENERATE QR CODE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="generator">
+      <h3>Generate unique Qr Code</h3>
+      <input
+        type="text"
+        id="qrText"
+        class="inputText"
+        placeholder="Input text or Url"
+      />
+      <input type="file" class="inputFile" id="qrFile" />
+      <div id="imageBox">
+        <img src="" id="qrImage" />
+      </div>
+      <button type="button" id="generate">Generate</button>
+      <p id="statusMessage"></p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
