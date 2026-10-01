@@ -5,11 +5,6 @@ const generate = document.getElementById("generate");
 const qrFile = document.getElementById("qrFile");
 const statusMessage = document.getElementById("statusMessage");
 
-const supabaseUrl = "https://wjvmyvjxkcscgjgobojb.supabase.co";
-const supabaseKey = "sb_publishable_5kBv6WsQ38rFt0nb0zEgsA_Bl-BzU4S";
-
-const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
 const createQrItem = async () => {
   const text = qrText.value.trim();
   const file = qrFile.files[0];
