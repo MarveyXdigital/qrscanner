@@ -50,8 +50,12 @@ const createQrItem = async () => {
   const { data: imageData } = supabaseClient.storage
     .from("qr-image")
     .getPublicUrl(uploadData.path);
-
   const imageUrl = imageData.publicUrl;
+
+  if (!imageUrl) {
+    statusMessage.textContent = "Could not get image Url";
+    return;
+  }
 
   const { error: updateError } = await supabaseClient
     .from("qr_item")
@@ -76,7 +80,7 @@ const createQrItem = async () => {
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H,
   });
-  statusMessage.testContent = "QR code generated successully!";
+  statusMessage.texsatContent = "QR code generated successully!";
 };
 
 generate.addEventListener("click", () => {
