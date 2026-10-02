@@ -1,13 +1,15 @@
 const viewTitle = document.getElementById("viewTitle");
 const viewImage = document.getElementById("viewImage");
 const viewContent = document.getElementById("viewContent");
-const visitorCount = document.getElementById("visitorCount");
 
-// Get the QR ID from the URL
+// Get the ID from the QR URL
+
 const params = new URLSearchParams(window.location.search);
+
 const id = params.get("id");
 
 // Load the QR information
+
 const loadQrItem = async () => {
   if (!id) {
     viewContent.textContent = "QR code information was not found.";
@@ -22,34 +24,29 @@ const loadQrItem = async () => {
 
   if (error) {
     console.log(error);
+
     viewContent.textContent = "Could not load this QR code.";
+
     return;
   }
 
-  // Display the information
+  console.log("QR data:", data);
+
+  // Display title
+
   viewTitle.textContent = data.title;
+
+  // Display text
 
   viewContent.textContent = data.content;
 
-  viewImage.src = data.image_url;
+  // Display image
 
-  visitorCount.textContent = data.visitor;
-
-  // Increase visitor count
-  const { error: visitorError } = await supabaseClient.rpc(
-    "increment_qr_visitors",
-    {
-      qr_id: id,
-    },
-  );
-
-  if (visitorError) {
-    console.log(visitorError);
-    return;
+  if (data.image_url) {
+    viewImage.src = data.image_url;
+  } else {
+    viewImage.style.display = "none";
   }
-
-  // Update the number shown on the page
-  visitorCount.textContent = Number(data.visitor) + 1;
 };
 
 loadQrItem();
