@@ -80,39 +80,9 @@ const createQrItem = async () => {
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H,
   });
-  statusMessage.texsatContent = "QR code generated successully!";
+  statusMessage.textContent = "QR code generated successully!";
 };
 
 generate.addEventListener("click", () => {
   createQrItem();
 });
-// function generateQr() {
-//   const inputValue = qrText.value.trim();
-//   if (inputValue.length > 0) {
-//     qrImg.src =
-//       "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
-//       encodeURIComponent(inputValue);
-//     imgBox.classList.add("show-img");
-//   } else {
-//     qrText.classList.add("error");
-//     setTimeout(() => {
-//       qrText.classList.remove("error");
-//     }, 1000);
-//   }
-// }
-// generate.addEventListener("click", generateQr);
-
-// qrText.addEventListener("keydown", (event) => {
-//   if (event.key === "Enter") {
-//     generateQr();
-//   }
-// });
-
-// var qrcode = new QRCode(document.getElementById("qrcode"), {
-//   text: "https://example.com",
-//   width: 256,
-//   height: 256,
-//   colorDark: "#000000",
-//   colorLight: "#ffffff",
-//   correctLevel: QRCode.CorrectLevel.H,
-// });
