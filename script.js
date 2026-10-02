@@ -9,21 +9,16 @@ const createQrItem = async () => {
   const text = qrText.value.trim();
   const file = qrFile.files[0];
 
-  if (!text && !file) {
+  if (!text || !file) {
     statusMessage.textContent = "please enter some text or Url";
     return;
   }
-  if (!file) {
-    statusMessage.textContent = "please selece image to proceed";
-    return;
-  }
-
   statusMessage.textContent = "Generating your unique Qr Code...";
 
   const { data, error } = await supabaseClient
     .from("qr_item")
     .insert({
-      title: qrText.value,
+      title: "Qr code",
       content: text,
       visitor: 0,
     })
@@ -33,7 +28,7 @@ const createQrItem = async () => {
     statusMessage.textContent = "Could not create your QR record.";
     return;
   }
-  // Get database ID
+
   const qrId = data.id;
 
   const fileName = `${Date.now()}-${file.name}`;
