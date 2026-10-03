@@ -3,25 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GENERATE QR CODE</title>
+    <title>Generate QR Code</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
-    <div class="generator">
-      <h3>Generate unique Qr Code</h3>
+    <main class="generator">
+      <h3>Generate Unique QR Code</h3>
+
       <input
         type="text"
         id="qrText"
         class="inputText"
-        placeholder="Input text or Url"
+        placeholder="Input text or URL"
       />
-      <input type="file" class="inputFile" id="qrFile" />
-      <div id="imageBox">
-        <img src="" id="qrImage" />
-      </div>
-      <button type="button" id="generate">Generate</button>
+
+      <label for="qrFile" class="file-upload" id="fileUpload" tabindex="0">
+        <span id="uploadText">Choose or paste an image</span>
+
+        <img id="filePreview" src="" alt="Selected image" />
+      </label>
+
+      <input type="file" id="qrFile" accept="image/*" />
+
+      <button type="button" id="generate">
+        <span id="buttonText">Generate</span>
+        <span id="loader" class="loader"></span>
+      </button>
+
       <p id="statusMessage"></p>
-    </div>
+
+      <div id="imageBox">
+        <img src="" id="qrImage" alt="Generated QR Code" />
+      </div>
+    </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="config.js"></script>

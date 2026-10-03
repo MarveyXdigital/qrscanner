@@ -32,8 +32,7 @@ body {
   color: #111111;
 }
 
-.inputText,
-.inputFile {
+.inputText {
   width: 100%;
   margin-bottom: 12px;
   padding: 12px;
@@ -49,9 +48,48 @@ body {
   border-color: #111111;
 }
 
-.inputFile {
-  cursor: pointer;
+/* IMAGE UPLOAD */
+
+#qrFile {
+  display: none;
 }
+
+.file-upload {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #dddddd;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  color: #555555;
+  background: #ffffff;
+  margin-bottom: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.file-upload:hover {
+  border-color: #111111;
+}
+
+.file-upload img {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-upload.has-image img {
+  display: block;
+}
+
+.file-upload.has-image #uploadText {
+  display: none;
+}
+
+/* GENERATE BUTTON */
 
 button {
   width: 100%;
@@ -72,37 +110,82 @@ button:hover {
   color: #111111;
 }
 
+/* STATUS MESSAGE */
+
 #statusMessage {
   margin-top: 15px;
   font-size: 14px;
-  color: #555555;
 }
 
-.imageBox {
+/* GENERATED QR CODE */
+
+#imageBox {
   width: 200px;
   max-height: 0;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
-  transition: max-height 0.5s ease;
+  transition:
+    max-height 0.5s ease,
+    margin 0.5s ease;
 }
 
-.imageBox img {
+#imageBox img {
   display: block;
   width: 100%;
   height: auto;
   padding: 10px;
 }
 
-.imageBox.show-img {
+#imageBox:has(canvas) {
   max-height: 300px;
   margin: 15px auto;
   border: 1px solid #eeeeee;
 }
 
+/* LOADING STATE */
+
+.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.loader {
+  display: none;
+  width: 15px;
+  height: 15px;
+  margin-left: 8px;
+  border: 2px solid #ffffff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ERROR MESSAGE */
+
 .error {
+  color: rgb(255, 0, 0);
+  padding: 10px;
+  border-radius: 10px;
   animation: shake 0.1s linear 10;
 }
+
+/* SUCCESS MESSAGE */
+
+.successful {
+  color: rgb(0, 103, 34);
+  font-weight: 500;
+  padding: 10px;
+}
+
+/* ERROR SHAKE */
 
 @keyframes shake {
   0% {
@@ -125,6 +208,8 @@ button:hover {
     transform: translateX(0);
   }
 }
+
+/* MOBILE */
 
 @media (max-width: 500px) {
   body {
